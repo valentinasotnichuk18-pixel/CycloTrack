@@ -19,7 +19,7 @@ import {
 
 const SETTINGS_KEY = 'cyclothymia_settings';
 
-const systemDark = window.matchMedia?.('(prefers-color-scheme: dark)').matches ?? false;
+const systemDark = false;
 
 const defaultSettings = {
   darkMode: systemDark,
