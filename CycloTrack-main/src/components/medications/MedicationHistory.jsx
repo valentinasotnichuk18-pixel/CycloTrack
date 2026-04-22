@@ -1,12 +1,12 @@
 import React from 'react';
 import { supabase } from '@/lib/supabaseClient';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { format, parseISO, subDays } from 'date-fns';
+import { format, parseISO } from 'date-fns';
 import { uk } from 'date-fns/locale';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
-import { ArrowLeft, Check, X, Clock, Trash2 } from 'lucide-react';
+import { ArrowLeft, Check, X, Trash2 } from 'lucide-react';
 import { toast } from 'sonner';
 
 const frequencyLabels = {

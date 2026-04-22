@@ -1,8 +1,6 @@
 import React, { useState } from 'react';
 import { supabase } from '@/lib/supabaseClient'
 import { useQuery, useQueryClient } from '@tanstack/react-query';
-import { format } from 'date-fns';
-import { uk } from 'date-fns/locale';
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';

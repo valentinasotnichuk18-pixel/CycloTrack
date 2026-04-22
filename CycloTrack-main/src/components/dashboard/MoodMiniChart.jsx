@@ -1,8 +1,7 @@
 import React, { useState } from 'react';
 import { Card } from '@/components/ui/card';
-import {
-  AreaChart, Area, LineChart, Line, XAxis, YAxis, CartesianGrid,
-  Tooltip, ResponsiveContainer, ReferenceLine, Legend
+import { LineChart, Line, XAxis, YAxis, CartesianGrid,
+  Tooltip, ResponsiveContainer, ReferenceLine
 } from 'recharts';
 import { format, parseISO } from 'date-fns';
 import { uk } from 'date-fns/locale';

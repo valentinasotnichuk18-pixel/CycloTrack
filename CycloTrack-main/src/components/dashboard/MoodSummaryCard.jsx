@@ -1,7 +1,7 @@
 import React from 'react';
 import { Card } from '@/components/ui/card';
 import { TrendingUp, TrendingDown, Minus } from 'lucide-react';
-import { EMOTIONAL_CATEGORIES, getStateById } from '@/lib/emotionalStates';
+import { getStateById } from '@/lib/emotionalStates';
 
 const phaseLabels = {
   hypomanic: 'Гіпоманія',

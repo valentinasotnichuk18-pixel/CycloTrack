@@ -3,7 +3,6 @@ import { supabase } from '@/lib/supabaseClient'
 import { Card } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
-import { Label } from '@/components/ui/label';
 import { toast } from 'sonner';
 import PageHeader from '@/components/shared/PageHeader';
 import { Link } from 'react-router-dom';

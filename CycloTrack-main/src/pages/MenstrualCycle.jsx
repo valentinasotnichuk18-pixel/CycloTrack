@@ -9,7 +9,6 @@ import { Button } from '@/components/ui/button';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Heart, TrendingUp, TrendingDown, Minus } from 'lucide-react';
 import { AreaChart, Area, XAxis, YAxis, ResponsiveContainer, ReferenceLine } from 'recharts';
-import PageHeader from '@/components/shared/PageHeader';
 
 const menstrualLabels = {
   menstruation: 'Менструація',

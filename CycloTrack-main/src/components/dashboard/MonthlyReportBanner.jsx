@@ -10,6 +10,7 @@ import jsPDF from 'jspdf';
 
 export default function MonthlyReportBanner({ moodEntries, profile }) {
   const [expanded, setExpanded] = useState(false);
+  const [exporting, setExporting] = useState(false);
   const queryClient = useQueryClient();
 
   const { data: reports = [] } = useQuery({
@@ -97,8 +98,6 @@ export default function MonthlyReportBanner({ moodEntries, profile }) {
   };
 
   const monthName = format(now, 'LLLL yyyy', { locale: uk });
-
-  const [exporting, setExporting] = useState(false);
 
   const handleExportPDF = async () => {
     setExporting(true);

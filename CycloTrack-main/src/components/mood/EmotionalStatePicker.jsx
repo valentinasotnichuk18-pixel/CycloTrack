@@ -1,8 +1,8 @@
-import React, { useState } from 'react';
-import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger, SelectValue } from '@/components/ui/select';
+import React from 'react';
+import { Select, SelectContent, SelectGroup, SelectItem, SelectLabel, SelectTrigger } from '@/components/ui/select';
 import { Badge } from '@/components/ui/badge';
-import { EMOTIONAL_CATEGORIES, EMOTIONAL_STATES, STATES_BY_CATEGORY, getStateById } from '@/lib/emotionalStates';
-import { ChevronDown, Info } from 'lucide-react';
+import { EMOTIONAL_CATEGORIES, STATES_BY_CATEGORY, getStateById } from '@/lib/emotionalStates';
+import { Info } from 'lucide-react';
 
 export default function EmotionalStatePicker({ value, onChange }) {
   const selectedState = getStateById(value);

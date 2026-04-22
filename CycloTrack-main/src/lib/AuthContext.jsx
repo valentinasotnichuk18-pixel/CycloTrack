@@ -7,7 +7,6 @@ export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(false);
   const [isLoadingAuth, setIsLoadingAuth] = useState(true);
-  const [isLoadingPublicSettings, setIsLoadingPublicSettings] = useState(false);
   const [authError, setAuthError] = useState(null);
 
   useEffect(() => {
@@ -41,12 +40,9 @@ export const AuthProvider = ({ children }) => {
         user,
         isAuthenticated,
         isLoadingAuth,
-        isLoadingPublicSettings,
         authError,
-        appPublicSettings: null,
         logout,
         navigateToLogin,
-        checkAppState: () => {},
       }}>
         {children}
       </AuthContext.Provider>
