@@ -49,15 +49,19 @@ function ProfileGuard() {
 }
 
 const AuthenticatedApp = () => {
-  const { isLoadingAuth, isLoadingPublicSettings, authError, navigateToLogin } = useAuth();
+  const { isAuthenticated, isLoadingAuth, authError, navigateToLogin } = useAuth();
   useMedicationReminders();
 
-  if (isLoadingPublicSettings || isLoadingAuth) {
+  if (isLoadingAuth) {
     return (
         <div className="fixed inset-0 flex items-center justify-center bg-background">
           <div className="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
         </div>
     );
+  }
+
+  if (!isAuthenticated) {
+    return <Login />;
   }
 
   if (authError) {
@@ -106,30 +110,6 @@ function PageSlide({ children }) {
 }
 
 function App() {
-  const [session, setSession] = useState(null)
-  const [loading, setLoading] = useState(true)
-
-  useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session)
-      setLoading(false)
-    })
-
-    const { data: { subscription } } = supabase.auth.onAuthStateChange((_event, session) => {
-      setSession(session)
-    })
-
-    return () => subscription.unsubscribe()
-  }, [])
-
-  if (loading) return (
-      <div className="fixed inset-0 flex items-center justify-center">
-        <div className="w-8 h-8 border-4 border-primary/20 border-t-primary rounded-full animate-spin"></div>
-      </div>
-  )
-
-  if (!session) return <Login />
-
   return (
       <AuthProvider>
         <QueryClientProvider client={queryClientInstance}>
