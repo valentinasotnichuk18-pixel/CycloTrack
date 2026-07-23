@@ -22,7 +22,8 @@ export default function useMedicationReminders() {
         const now = new Date();
         const todayStr = format(now, 'yyyy-MM-dd');
         const nowMinutes = now.getHours() * 60 + now.getMinutes();
-        const { data: { user } } = await supabase.auth.getUser();
+const { data: { user } } = await supabase.auth.getUser();
+        if (!user) return;
         const [{ data: meds }, { data: intakeData }] = await Promise.all([
           supabase.from('medications').select('*').eq('user_id', user.id).eq('is_active', true),
           supabase.from('medication_intakes').select('*').eq('user_id', user.id).eq('date', todayStr),
@@ -60,9 +61,12 @@ export default function useMedicationReminders() {
         console.error('Medication reminder check failed:', e);
       }
     };
-
-    check();
-    const interval = setInterval(check, 30_000);
+check();
+    const interval = setInterval(() => {
+      if (document.visibilityState === 'visible') {
+        check();
+      }
+    }, 30_000);
     return () => clearInterval(interval);
   }, []);
 }
