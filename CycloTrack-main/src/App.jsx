@@ -5,7 +5,6 @@ import { queryClientInstance } from '@/lib/query-client'
 import { BrowserRouter as Router, Route, Routes, Navigate } from 'react-router-dom';
 import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
-import UserNotRegisteredError from '@/components/UserNotRegisteredError';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
 import useMedicationReminders from '@/hooks/useMedicationReminders';
@@ -49,7 +48,7 @@ function ProfileGuard() {
 }
 
 const AuthenticatedApp = () => {
-  const { isAuthenticated, isLoadingAuth, authError, navigateToLogin } = useAuth();
+  const { isAuthenticated, isLoadingAuth } = useAuth();
   useMedicationReminders();
 
   if (isLoadingAuth) {
@@ -62,15 +61,6 @@ const AuthenticatedApp = () => {
 
   if (!isAuthenticated) {
     return <Login />;
-  }
-
-  if (authError) {
-    if (authError.type === 'user_not_registered') {
-      return <UserNotRegisteredError />;
-    } else if (authError.type === 'auth_required') {
-      navigateToLogin();
-      return null;
-    }
   }
 
   return (
