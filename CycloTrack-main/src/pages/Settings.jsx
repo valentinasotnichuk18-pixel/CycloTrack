@@ -213,11 +213,11 @@ export default function Settings() {
         let count = 0;
         const { data: { user } } = await supabase.auth.getUser()
         if (data.moods?.length) {
-          await supabase.from('mood_entries').insert(data.moods.map(({ id, created_at, ...rest }) => ({ ...rest, user_id: user.id })))
           count += data.moods.length
         }
+        await supabase.from('mood_entries').insert(data.moods.map(({ id: _id, created_at: _created_at, ...rest }) => ({ ...rest, user_id: user.id })))
         if (data.medications?.length) {
-          await supabase.from('medications').insert(data.medications.map(({ id, created_at, ...rest }) => ({ ...rest, user_id: user.id })))
+          await supabase.from('medications').insert(data.medications.map(({ id: _id, created_at: _created_at, ...rest }) => ({ ...rest, user_id: user.id })))
           count += data.medications.length
         }
         toast.success(`Імпортовано ${count} записів`);

@@ -56,8 +56,8 @@ export default function useMedicationReminders() {
             });
           }
         }
-      } catch (e) {
-        // silently ignore auth/network errors
+    } catch (e) {
+        console.error('Medication reminder check failed:', e);
       }
     };
 

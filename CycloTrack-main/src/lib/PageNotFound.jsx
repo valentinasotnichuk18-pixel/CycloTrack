@@ -13,7 +13,8 @@ export default function PageNotFound({}) {
             try {
                 const { data: { user } } = await supabase.auth.getUser();
                 return { user, isAuthenticated: !!user };
-            } catch (error) {
+          } catch (error) {
+                console.error('Failed to check user on 404 page:', error);
                 return { user: null, isAuthenticated: false };
             }
         }

@@ -36,7 +36,7 @@ export default function NewPrescription() {
     setUploading(true);
     const { data: { user } } = await supabase.auth.getUser()
     const fileName = `${user.id}/${Date.now()}_${file.name}`
-    const { data, error } = await supabase.storage
+    const { error } = await supabase.storage
         .from('prescriptions')
         .upload(fileName, file)
     if (!error) {

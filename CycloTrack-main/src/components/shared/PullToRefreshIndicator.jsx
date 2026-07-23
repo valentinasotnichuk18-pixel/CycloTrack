@@ -3,8 +3,6 @@ import { RefreshCw } from 'lucide-react';
 
 export default function PullToRefreshIndicator({ pullY, refreshing, threshold = 70 }) {
   const progress = Math.min(pullY / threshold, 1);
-  const triggered = pullY >= threshold || refreshing;
-
   if (pullY <= 2 && !refreshing) return null;
 
   return (

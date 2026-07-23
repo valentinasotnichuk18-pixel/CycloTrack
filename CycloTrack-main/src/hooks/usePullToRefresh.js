@@ -13,8 +13,6 @@ export default function usePullToRefresh(onRefresh, threshold = 70) {
   const containerRef = useRef(null);
 
   useEffect(() => {
-    const el = containerRef.current || window;
-
     const onTouchStart = (e) => {
       const scrollTop = containerRef.current
         ? containerRef.current.scrollTop
