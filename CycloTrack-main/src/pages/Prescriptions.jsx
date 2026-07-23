@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { Link } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import { supabase } from '@/lib/supabaseClient'
 import { useQuery, useQueryClient } from '@tanstack/react-query';
 import { format, parseISO } from 'date-fns';
@@ -67,6 +67,7 @@ function FilePreviewModal({ url, onClose }) {
 }
 
 export default function Prescriptions() {
+  const navigate = useNavigate();
   const queryClient = useQueryClient();
   const [previewUrl, setPreviewUrl] = useState(null);
 
@@ -133,7 +134,11 @@ export default function Prescriptions() {
               />
           ) : (
               prescriptions.map(p => (
-                  <Card key={p.id} className="p-4 border border-border">
+                  <Card
+                      key={p.id}
+                      className="p-4 border border-border cursor-pointer hover:bg-secondary/30 transition-colors"
+                      onClick={() => navigate(`/prescriptions/${p.id}`)}
+                  >
                     <div className="flex items-start justify-between">
                       <div className="flex-1">
                         <div className="flex items-center gap-2 mb-1">
@@ -161,12 +166,12 @@ export default function Prescriptions() {
                                 variant="ghost"
                                 size="icon"
                                 className="h-8 w-8"
-                                onClick={() => setPreviewUrl(p.file_url)}
+                               onClick={(e) => { e.stopPropagation(); setPreviewUrl(p.file_url); }}
                             >
                               <Eye className="w-4 h-4" />
                             </Button>
                         )}
-                        <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive" onClick={() => handleDelete(p.id)}>
+                        <Button variant="ghost" size="icon" className="h-8 w-8 text-destructive" onClick={(e) => { e.stopPropagation(); handleDelete(p.id); }}>
                           <Trash2 className="w-4 h-4" />
                         </Button>
                       </div>

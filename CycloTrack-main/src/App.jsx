@@ -17,6 +17,7 @@ import MenstrualCycle from '@/pages/MenstrualCycle';
 import Medications from '@/pages/Medications';
 import AddMedicationPage from '@/pages/AddMedicationPage';
 import Prescriptions from '@/pages/Prescriptions';
+import PrescriptionDetail from '@/pages/PrescriptionDetail';
 import NewPrescription from '@/pages/NewPrescription';
 import Settings from '@/pages/Settings';
 import ProfileSetup from '@/pages/ProfileSetup';
@@ -76,7 +77,9 @@ const AuthenticatedApp = () => {
             <Route path="/medications" element={<PageSlide><Medications /></PageSlide>} />
             <Route path="/medications/new" element={<PageSlide><AddMedicationPage /></PageSlide>} />
             <Route path="/prescriptions" element={<PageSlide><Prescriptions /></PageSlide>} />
+            <Route path="/prescriptions/:id" element={<PageSlide><PrescriptionDetail /></PageSlide>} />
             <Route path="/prescriptions/new" element={<PageSlide><NewPrescription /></PageSlide>} />
+            import PrescriptionDetail from '@/pages/PrescriptionDetail';
             <Route path="/settings" element={<PageSlide><Settings /></PageSlide>} />
           </Route>
           <Route path="/login" element={<Login />} />
