@@ -1,41 +1,34 @@
 # CycloTrack
-A personal companion app for tracking mood, medications, and daily well-being for people living with cyclothymia
-**Welcome to your Base44 project** 
+Персональний застосунок для відстеження настрою, ліків та щоденного самопочуття для людей з циклотимією.
 
-**About**
+**Стек:** React, Vite, Supabase, Tailwind CSS
 
-View and Edit  your app on [Base44.com](http://Base44.com) 
+## Запуск проєкту локально
 
-This project contains everything you need to run your app locally.
+1. Клонуй репозиторій
+2. Перейди в папку проєкту
+3. Встанови залежності:
+npm install
 
-**Edit the code in your local development environment**
+4. Створи файл `.env.local` в корені проєкту і додай змінні середовища:
 
-Any change pushed to the repo will also be reflected in the Base44 Builder.
+VITE_SUPABASE_URL=твій_supabase_url
+VITE_SUPABASE_ANON_KEY=твій_supabase_anon_key
 
-**Prerequisites:** 
 
-1. Clone the repository using the project's Git URL 
-2. Navigate to the project directory
-3. Install dependencies: `npm install`
-4. Create an `.env.local` file and set the right environment variables
+Ці значення бери в Supabase Dashboard, розділ Project Settings, потім API Keys.
 
-```
-VITE_BASE44_APP_ID=your_app_id
-VITE_BASE44_APP_BASE_URL=your_backend_url
+5. Запусти проєкт:
 
-e.g.
-VITE_BASE44_APP_ID=cbef744a8545c389ef439ea6
-VITE_BASE44_APP_BASE_URL=https://my-to-do-list-81bfaad7.base44.app
-```
+npm run dev
+## Деплой
 
-Run the app: `npm run dev`
+Проєкт задеплоєний на Vercel: https://cyclo-track.vercel.app
 
-**Publish your changes**
+Крок 3: Збережи файл (Ctrl+S)
 
-Open [Base44.com](http://Base44.com) and click on Publish.
+Крок 4: Заповш зміни в PowerShell:
 
-**Docs & Support**
-
-Documentation: [https://docs.base44.com/Integrations/Using-GitHub](https://docs.base44.com/Integrations/Using-GitHub)
-
-Support: [https://app.base44.com/support](https://app.base44.com/support)
+git add README.md
+git commit -m "docs: update README with actual Supabase setup instructions"
+git push
