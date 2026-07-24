@@ -48,7 +48,7 @@ function ProfileGuard() {
   return profileDone ? <Navigate to="/" replace /> : <Navigate to="/profile" replace />;
 }
 
-const AuthenticatedApp = () => {
+export const AuthenticatedApp = () => {
   const { isAuthenticated, isLoadingAuth } = useAuth();
   useMedicationReminders();
 
@@ -79,7 +79,6 @@ const AuthenticatedApp = () => {
             <Route path="/prescriptions" element={<PageSlide><Prescriptions /></PageSlide>} />
             <Route path="/prescriptions/:id" element={<PageSlide><PrescriptionDetail /></PageSlide>} />
             <Route path="/prescriptions/new" element={<PageSlide><NewPrescription /></PageSlide>} />
-            import PrescriptionDetail from '@/pages/PrescriptionDetail';
             <Route path="/settings" element={<PageSlide><Settings /></PageSlide>} />
           </Route>
           <Route path="/login" element={<Login />} />
