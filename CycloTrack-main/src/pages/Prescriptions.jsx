@@ -33,7 +33,7 @@ function FilePreviewModal({ url, onClose }) {
 
   return (
       <div
-          className="fixed inset-0 z-50 flex items-center justify-center bg-black/70"
+          className="fixed inset-0 z-[10000] flex items-center justify-center bg-black/70"
           onClick={onClose}
       >
         <div
@@ -49,8 +49,8 @@ function FilePreviewModal({ url, onClose }) {
           <div className="flex-1 overflow-auto p-2">
             {isPDF ? (
                 <iframe
-                    src={url}
-                    className="w-full h-[70vh] rounded"
+                    src={`${url}#zoom=100`}
+                    className="w-full h-[75vh] rounded"
                     title="PDF preview"
                 />
             ) : (

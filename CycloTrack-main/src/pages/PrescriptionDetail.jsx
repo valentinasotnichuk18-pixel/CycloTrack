@@ -101,7 +101,7 @@ export default function PrescriptionDetail() {
                       <p className="text-xs text-muted-foreground mb-2">Файл документа</p>
                       {isPDF ? (
                           <iframe
-                              src={prescription.file_url}
+                             src={`${prescription.file_url}#zoom=100`}
                               className="w-full h-[60vh] rounded-lg border border-border"
                               title="Файл рецепту"
                           />
