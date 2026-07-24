@@ -8,7 +8,7 @@ import { Textarea } from '@/components/ui/textarea';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { ArrowLeft, Save, Upload } from 'lucide-react';
-import { useToast } from '@/components/ui/use-toast';
+import { toast } from 'sonner';
 
 const TYPE_OPTIONS = [
   { value: 'prescription', label: 'Рецепт' },
@@ -19,7 +19,6 @@ const TYPE_OPTIONS = [
 
 export default function NewPrescription() {
   const navigate = useNavigate();
-  const { toast } = useToast();
   const [saving, setSaving] = useState(false);
   const [uploading, setUploading] = useState(false);
 
@@ -44,27 +43,27 @@ export default function NewPrescription() {
           .from('prescriptions')
           .getPublicUrl(fileName)
       update('file_url', publicUrl)
-      toast({ title: 'Файл завантажено' });
+      toast.success('Файл завантажено');
     }
     setUploading(false);
   };
 
   const handleSave = async () => {
     if (!form.title) {
-      toast({ title: 'Помилка', description: 'Введіть назву', variant: 'destructive' });
+      toast.error('Введіть назву');
       return;
     }
     setSaving(true);
     const { data: { user } } = await supabase.auth.getUser()
     const { error } = await supabase
         .from('prescriptions')
-        .insert([{ ...form, user_id: user.id }])
+        .insert([{ ...form, date: form.date || null, user_id: user.id }])
     if (error) {
-      toast({ title: 'Помилка', description: error.message, variant: 'destructive' })
+      toast.error(error.message)
       setSaving(false)
       return
     }
-    toast({ title: 'Збережено', description: 'Рецепт успішно додано' });
+    toast.success('Рецепт успішно додано');
     navigate('/prescriptions');
     setSaving(false);
   };
