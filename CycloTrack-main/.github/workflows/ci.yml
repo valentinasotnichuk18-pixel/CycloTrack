@@ -1,0 +1,31 @@
+name: CI
+
+on:
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
+
+jobs:
+  lint-and-test:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 20
+          cache: 'npm'
+          cache-dependency-path: CycloTrack-main/package-lock.json
+
+      - name: Install dependencies
+        working-directory: CycloTrack-main
+        run: npm ci
+
+      - name: Lint
+        working-directory: CycloTrack-main
+        run: npm run lint
+
+      - name: Run tests
+        working-directory: CycloTrack-main
+        run: npm run test
