@@ -49,8 +49,20 @@ export default function MedicationHistory({ medication, onBack }) {
     toast.success(taken ? 'Прийнято' : 'Пропущено');
   };
 
-  const handleDelete = async () => {
-    await supabase.from('medications').delete().eq('id', medication.id);
+ const handleDelete = async () => {
+    const { error: intakesError } = await supabase
+        .from('medication_intakes')
+        .delete()
+        .eq('medication_id', medication.id);
+    if (intakesError) {
+      toast.error(intakesError.message);
+      return;
+    }
+    const { error } = await supabase.from('medications').delete().eq('id', medication.id);
+    if (error) {
+      toast.error(error.message);
+      return;
+    }
     queryClient.invalidateQueries({ queryKey: ['medications'] });
     toast.success(`${medication.name} видалено`);
     onBack();

@@ -15,7 +15,7 @@ import {
   AlertDialogContent, AlertDialogDescription, AlertDialogFooter,
   AlertDialogHeader, AlertDialogTitle, AlertDialogTrigger,
 } from '@/components/ui/alert-dialog';
-
+import { enablePushNotifications, disablePushNotifications, isPushSubscribed } from '@/lib/pushNotifications';
 const SETTINGS_KEY = 'cyclothymia_settings';
 
 const systemDark = false;
@@ -64,7 +64,25 @@ export default function Settings() {
   }, [settings]);
 
   const toggle = (key) => setSettings(prev => ({ ...prev, [key]: !prev[key] }));
+useEffect(() => {
+  isPushSubscribed().then((subscribed) => {
+    setSettings((prev) => ({ ...prev, notifications: subscribed }));
+  });
+}, []);
 
+const toggleNotifications = async () => {
+  try {
+    if (settings.notifications) {
+      await disablePushNotifications();
+      toggle('notifications');
+    } else {
+      await enablePushNotifications();
+      toggle('notifications');
+    }
+  } catch (e) {
+    toast.error(e.message || 'Не вдалося змінити налаштування сповіщень');
+  }
+};
   const fetchAllData = async () => {
     const { data: { user } } = await supabase.auth.getUser()
     const [
@@ -319,7 +337,7 @@ export default function Settings() {
               label="Push-сповіщення"
               description="Нагадування про прийом ліків"
               checked={settings.notifications}
-              onToggle={() => toggle('notifications')}
+              onToggle={toggleNotifications}
             />
             <SettingRow
               icon={<Volume2 className="w-4 h-4 text-green-500" />}

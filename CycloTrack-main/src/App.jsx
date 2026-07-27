@@ -7,7 +7,6 @@ import PageNotFound from './lib/PageNotFound';
 import { AuthProvider, useAuth } from '@/lib/AuthContext';
 import { useEffect, useState } from 'react';
 import { AnimatePresence, motion } from 'framer-motion';
-import useMedicationReminders from '@/hooks/useMedicationReminders';
 import { supabase } from '@/lib/supabaseClient'
 import AppLayout from '@/components/layout/AppLayout';
 import Dashboard from '@/pages/Dashboard';
@@ -50,7 +49,6 @@ function ProfileGuard() {
 
 export const AuthenticatedApp = () => {
   const { isAuthenticated, isLoadingAuth } = useAuth();
-  useMedicationReminders();
 
   if (isLoadingAuth) {
     return (
