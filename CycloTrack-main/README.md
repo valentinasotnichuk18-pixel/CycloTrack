@@ -6,6 +6,7 @@
 
 - [Test Plan](docs/qa/test-plan.md)
 - [Test Scenarios](docs/qa/test-scenarios.md)
+- [https://github.com/valentinasotnichuk18-pixel/CycloTrack/blob/main/CycloTrack-main/docs/qa/Bug-reports).
 
 ## Запуск проєкту локально
 
