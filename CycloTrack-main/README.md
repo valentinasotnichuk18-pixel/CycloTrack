@@ -2,6 +2,10 @@
 Персональний застосунок для відстеження настрою, ліків та щоденного самопочуття для людей з циклотимією.
 
 **Стек:** React, Vite, Supabase, Tailwind CSS
+## QA Documentation
+
+- [Test Plan](docs/qa/test-plan.md)
+- [Test Scenarios](docs/qa/test-scenarios.md)
 
 ## Запуск проєкту локально
 
